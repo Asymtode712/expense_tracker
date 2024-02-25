@@ -6,10 +6,12 @@ const bodyParser = require("body-parser"); //imnport body-parser
 
 const userRoutes=require('./routes/user');
 const expenseRoutes=require('./routes/expense');
-
+const dotenv=require("dotenv");
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("Connected to database");
 }).catch((error) => console.log(`${error} did not connect!`));
 
