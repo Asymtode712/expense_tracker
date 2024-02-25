@@ -4,6 +4,9 @@ const UserModel = require("../models/userModel");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken"); // To generate Token
+const dotenv=require("dotenv");
+
+dotenv.config();
 
 const authMiddleware=require('../middleware/expenseMiddleWare');
 
