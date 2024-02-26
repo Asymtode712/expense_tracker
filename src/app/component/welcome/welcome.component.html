@@ -1,0 +1,78 @@
+<mat-drawer-container
+  class="example-container"
+  hasBackdrop="True"
+  autosize
+  style="height: 100vh"
+>
+  <mat-drawer style="height: 100%" #drawer class="example-sidenav" mode="over">
+    <h2
+      style="
+        border-bottom: 2px solid red;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      "
+    >
+      Expense Tracker
+    </h2>
+    <div>
+      <div>
+        <div style="margin-top: 20px" *ngIf="isLogging">
+          <button mat-raised-button color="primary" (click)="onSignUp()">
+            <mat-icon>perm_identity</mat-icon>Sign Up
+          </button>
+        </div>
+        <div style="margin-top: 20px" *ngIf="!isLogging">
+          <button mat-raised-button color="primary" (click)="onLogin()">
+            <mat-icon>login</mat-icon>Login
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="appVersion!=''" style="margin-top:20px;font-size:12px;">
+      <p (copy)="false">Application Version: {{appVersion}}</p>
+    </div>
+  </mat-drawer>
+  <div>
+    <mat-toolbar style="border-bottom: 1px solid black">
+      <button
+        mat-icon-button
+        class="example-icon"
+        (click)="drawer.toggle()"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Expense Tracker</span>
+      <span class="example-spacer"></span>
+      <button
+        mat-mini-fab
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        matTooltip="Sign Up"
+        (click)="onSignUp()"
+        *ngIf="isLogging"
+      >
+        <mat-icon>perm_identity</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        matTooltip="Login"
+        (click)="onLogin()"
+        *ngIf="!isLogging"
+        color="accent"
+      >
+        <mat-icon>login</mat-icon>
+        Login
+      </button>
+    </mat-toolbar>
+  </div>
+  <div *ngIf="isLogging">
+    <div>
+      <app-login></app-login>
+    </div>
+  </div>
+  <div *ngIf="!isLogging">
+    <app-signup></app-signup>
+  </div>
+</mat-drawer-container>

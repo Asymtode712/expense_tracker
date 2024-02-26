@@ -1,0 +1,25 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  .view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  table {
+    width: 100%;
+    overflow-x:hidden;
+  }
+  .table-container{
+    max-width: 100%;
+    overflow-x: scroll;
+  }
+  .tables{
+    overflow:hidden;
+    position: relative;
+    display: contents;
+}

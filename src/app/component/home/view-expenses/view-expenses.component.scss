@@ -1,0 +1,85 @@
+.main{
+    padding: 30px 25px;
+    background-image: url(../../../../assets/image/saving.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+}
+mat-card{
+    margin: 0px 25px;
+    margin-bottom: 20px;
+}
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icons{
+    font-size: 25px;
+    font-weight: bold;
+}
+.content{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.tableContent{
+    overflow:hidden;
+    position: relative;
+    display: contents;
+}
+.matContnet:hover{
+    transform: scale(1.1);
+    transition: .5s;
+}
+.front{
+    // font-size: 18px;
+    font-family: cursive;
+    // font-weight: bold;
+    color: grey;
+}
+.front1{
+    font-size: 24px;
+    font-family: cursive;
+    font-weight: bold;
+    // color: grey;
+}
+table {
+    width: 100%;
+    overflow: hidden;
+    // overflow-x: auto;
+  }
+.table-container{
+  max-width: 100%;
+  overflow-x: scroll;
+}
+.noelement{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+.noelement p{
+    font-size: 25px;
+    font-weight: 240;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn-pie{
+    background-color: white;
+    text-decoration: none;
+    border: none;
+}
+.btn-pie :hover{
+    transition: .5s;
+    cursor: pointer;
+}
+.btns{
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    z-index: 100;
+  }

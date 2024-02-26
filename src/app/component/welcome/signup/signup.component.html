@@ -1,0 +1,89 @@
+<div *ngIf="SignUpContinue" >
+  <!-- Loader content, you can customize this part as needed -->
+  <app-welcome-loader></app-welcome-loader>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12 col-md-6 myimage">
+      <img src="../../../assets/image/save.svg" alt="image" />
+    </div>
+    <div class="col-sm-6 col-xs-12 col-md-6" style="padding: 20px">
+      <p class="paragraph">Create an Expense Tracker Account</p>
+      <div class="line"></div>
+      <form [formGroup]="signUpForm">
+        <div class="inputs">
+          <mat-form-field appearance="outline">
+            <mat-label>Enter Full Name</mat-label>
+            <input matInput placeholder="Full Name" formControlName="name" />
+            <mat-error *ngIf="signUpForm.get('name')?.errors &&
+            signUpForm.get('name')?.hasError('required') && signUpForm.get('name')?.touched"  >Name is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('name')?.errors &&
+            signUpForm.get('name')?.hasError('pattern') && signUpForm.get('name')?.touched"  >Please Enter a Valid Name</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="inputs">
+          <mat-form-field appearance="outline">
+            <mat-label>Enter Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username" />
+            <mat-error *ngIf="signUpForm.get('username')?.errors &&
+            signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.touched ">Username is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="inputs">
+          <mat-form-field appearance="outline">
+            <mat-label>Enter Your Gmail</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="abc@gmail.com"
+              formControlName="gmail"
+            />
+            <mat-error *ngIf="signUpForm.get('gmail')?.errors &&
+            signUpForm.get('gmail')?.hasError('required') && signUpForm.get('gmail')?.touched">
+              Email Address is required
+            </mat-error>
+            <mat-error *ngIf="signUpForm.get('gmail')?.errors &&
+            signUpForm.get('gmail')?.hasError('email') && signUpForm.get('gmail')?.touched" >
+              Email Address is invalid
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="inputs">
+          <mat-form-field appearance="outline">
+            <mat-label>Enter Password</mat-label>
+            <input
+              matInput
+              
+              formControlName="password"
+              type="password"
+            />
+            <mat-error *ngIf="signUpForm.get('password')?.errors &&
+            signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched">Password is required</mat-error>
+            <mat-error *ngIf="signUpForm.get('password')?.errors &&
+            signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.touched">Password should be at least 8 characters</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="singUpBtn">
+          <button
+            style="margin: 10px 20px 10px 20px"
+            type="submit"
+            *ngIf="!SignUpContinue"
+            mat-raised-button
+            color="primary"
+            [disabled]="signUpForm.invalid"
+            (click)="onProceed()"
+          ><mat-icon>done</mat-icon>
+            Proceed
+          </button>
+          <button *ngIf="SignUpContinue" class="btn btn-success" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Creating...
+          </button>
+        </div>
+      </form>
+      <div *ngIf="SignUpContinue" style="margin-top: 10px; display:flex; justify-content: center;">
+        <p class="wait">Please Wait.....</p>
+      </div>
+    </div>
+  </div>
+</div>

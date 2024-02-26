@@ -1,0 +1,58 @@
+<div *ngIf="LoginContinue">
+  <!-- Loader content, you can customize this part as needed -->
+  <app-welcome-loader></app-welcome-loader>
+</div>
+
+<div>
+  <div class="content">
+    Expense tracker is a web application to help you keep track of your daily expenses. 
+    <div style="padding:15px 0px">Charts and tables help you better track spending behaviors.</div>
+  </div>
+  <div class="line"></div>
+  <div class="content1">
+    <div><button mat-button color="warn">Get Started</button></div>
+  </div>
+  <div class="container">
+    <div style="margin-top: 30px;">
+      <p class="loginp">Login to Expense Tracker Account</p>
+    </div>
+    <div class="forms">
+    <form [formGroup]="loginForm">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Registered Email</mat-label>
+          <input matInput placeholder="abc@gmail.com" type="email" formControlName="gmail">
+          <mat-error *ngIf="loginForm.get('gmail')?.errors &&
+            loginForm.get('gmail')?.hasError('required') && loginForm.get('gmail')?.touched" style="color: red;">
+              Email Address is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('gmail')?.errors &&
+            loginForm.get('gmail')?.hasError('email') && loginForm.get('gmail')?.touched" style="color: red;">
+              Email Address is invalid
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="padding-top: 5px;">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter Password</mat-label>
+          <input matInput placeholder="" type="password" formControlName="password">
+          <mat-error *ngIf="loginForm.get('password')?.errors &&
+            loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+              Password is required
+            </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="text-align: center;" class="btns">
+        <button *ngIf="!LoginContinue" mat-raised-button type="submit" color="accent" (click)="onLogin()"><mat-icon>login</mat-icon>Login</button>
+        <button *ngIf="LoginContinue" class="btn btn-success" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      </div>
+    </form>
+    </div>
+    <div *ngIf="LoginContinue" style="margin-top: 10px;">
+      <p class="wait">Please Wait!! Fetching Your Account Details</p>
+    </div>
+  </div>
+</div>

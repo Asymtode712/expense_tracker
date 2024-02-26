@@ -1,0 +1,41 @@
+.myimage{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.myimage img{
+    height: 100%;
+    width: 100%;
+}
+.container-fluid{
+    padding: 20px 40px 20px 40px;
+    background-color: rgb(238 231 239 / 27%)
+}
+.inputs mat-form-field{
+    width: 100%;;
+}
+.paragraph{
+    font-size: 20px;
+    font-weight: 100px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.paragraph:hover{
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+.line{
+    height: 2px;
+    margin-bottom: 30px;
+    background-color: red;
+    // margin: 2px 70px;
+}
+
+.singUpBtn{
+    text-align: center;
+}
+.singUpBtn:hover{
+    transform: scale(1.1);
+    transition: .5s;
+}

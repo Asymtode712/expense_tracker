@@ -1,0 +1,63 @@
+<div *ngIf="type==='alert'">
+  <h1 mat-dialog-title>Leaving So Soon???</h1>
+  <div mat-dialog-content>Logged out for now, but the journey continues. See you soon! 👋😄</div>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close cdkFocusInitial>Stay</button>
+    <button
+      mat-raised-button
+      color="primary"
+      mat-dialog-close
+      (click)="onLogout()"
+    >
+      Leave
+    </button>
+  </div>
+</div>
+
+<div *ngIf="type==='error'">
+  <h1 mat-dialog-title>Wrong File Choosen</h1>
+  <div mat-dialog-content>Use Chrome Browser Or Please Choose only CSV (.csv) Files !!</div>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>OK</button>
+  </div>
+</div>
+
+<div *ngIf="type==='delete'">
+  <h1 mat-dialog-title>Warning!!</h1>
+  <div mat-dialog-content>Are your sure? Remember this action can't be <b>undo</b>.</div>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close cdkFocusInitial>Stay</button>
+    <button
+      mat-raised-button
+      color="primary"
+      mat-dialog-close
+      (click)="onDeleteAccount()"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
+<div *ngIf="type==='admin'">
+  <h1 mat-dialog-title>Wrong Action!!</h1>
+  <div mat-dialog-content>Wrong Action this Account can't be deleted. As this is account created by <b>Admin..</b> Thank You..</div>
+  <div mat-dialog-content>
+    <p>Please Create your account to use the functionality..</p>
+  </div>
+  <div mat-dialog-actions  align="end">
+    <button mat-raised-button color="primary" mat-dialog-close>OK</button>
+  </div>
+</div>
+
+<div *ngIf="type==='expire'">
+  <h1 mat-dialog-title>Session Expired</h1>
+  <div mat-dialog-content>Your current session expired!! Please login again to continue</div>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close (click)="onNavigateWelcome()">OK</button>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loaderRelay">
+  <!-- Loader content, you can customize this part as needed -->
+  <app-welcome-loader></app-welcome-loader>
+</div>
