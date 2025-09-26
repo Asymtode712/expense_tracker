@@ -46,11 +46,11 @@ JWT_SECRET=your_jwt_secret_key_here
 ### 4. Start Backend Server
 ```bash
 # Development mode
-npm start
+node server.js
 
 # OR with nodemon for auto-restart
 npm install -g nodemon
-nodemon app.js
+nodemon server.js
 ```
 
 The backend server will run on `http://localhost:3000`
@@ -118,7 +118,7 @@ ng build --configuration=production
 1. **Terminal 1 - Backend**:
    ```bash
    cd backend
-   npm start
+   node server.js
    ```
 
 2. **Terminal 2 - Frontend**:
