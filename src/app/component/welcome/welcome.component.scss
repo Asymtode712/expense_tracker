@@ -1,22 +1,363 @@
-.example-spacer {
-    flex: 1 1 auto;
+/* Global Host Styling */
+:host {
+  z-index: 30;
+  // removed box-shadow from host to focus styling on cards/toolbars
+}
+
+.welcome-container {
+  height: 100vh;
+}
+
+/* Toolbars */
+.desktop-toolbar {
+  height: 64px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background: white; // White toolbar for desktop
+  color: black;
+
+  .logo-btn {
+    font-size: 1.25rem;
+    font-weight: 600;
+    .app-name {
+      margin-left: 8px;
+    }
   }
-  
-  .example-sidenav-content {
+
+  .nav-links button {
+    margin: 0 4px;
+    &:last-child { margin-left: 12px; }
+  }
+}
+
+.mobile-toolbar {
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  background: #3f51b5; // Primary color for mobile
+  color: white;
+
+  .logo-btn {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 0;
+    .app-name {
+      margin-left: 6px;
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Sidenav */
+.mobile-sidenav {
+  width: 250px;
+
+  .sidenav-content {
+    padding: 16px;
+  }
+
+  .logo-btn {
     display: flex;
-    height: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 64px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+
+    .app-name {
+      margin-left: 8px;
+      color: #3f51b5;
+    }
   }
+
+  .sidenav-cta {
+    margin-top: 24px;
+    padding: 0 8px;
+    button { width: 100%; }
+  }
+}
+
+
+/* Main Content Layout */
+.container {
+  min-height: calc(100vh - 64px); // Adjust based on desktop toolbar height
+}
+
+@media (max-width: 599px) { // Adjust based on mobile toolbar height
+  .container {
+    min-height: calc(100vh - 56px);
+  }
+}
+
+.main-content {
+  padding: 32px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO Section */
+.hero {
+  background: linear-gradient(180deg, #fafaff 0%, #f5f7fa 100%);
+  border-radius: 16px;
+  padding: 48px;
+  margin-bottom: 48px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 450px);
+  gap: 48px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-text { order: 2; }
+  .hero-illustration { order: 1; margin-bottom: 24px; }
+  .hero-ctas { justify-content: center; }
+}
+
+.hero-text h1 {
+  margin: 0 0 16px 0;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.lead {
+  margin-bottom: 24px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.15rem;
+}
+
+.hero-ctas button {
+  margin-right: 16px;
+  padding: 8px 24px;
+  font-weight: 600;
+}
+
+.hero-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-illustration img {
+  width: 100%;
+  max-width: 450px;
+  display: block;
+}
+
+.hero-quicklist {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  li {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+    mat-icon {
+      color: #4caf50; // A friendly green checkmark
+      margin-right: 6px;
+      font-size: 18px;
+    }
+  }
+}
+
+/* Features Section */
+.features {
+  margin: 48px 0;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+
+.feature-item {
+  text-align: left;
+}
+.feature-card {
+  height: 100%;
+  padding: 24px;
+  border-left: 4px solid #3f51b5; // Highlight border
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+
+  mat-card-header {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .feature-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+    margin-right: 12px;
+  }
+
+  mat-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+
+/* Testimonials Section */
+.testimonials {
+  margin: 48px 0;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
+.testimonial {
+  padding: 24px;
+  text-align: left;
+  background: white;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .quote {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 1.4;
+  }
+
+  .author {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    .role {
+      font-weight: 400;
+      color: #3f51b5;
+    }
+  }
+}
+
+/* Call to Action (CTA) Banner */
+.cta-banner {
+  margin-top: 48px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #e3f2fd; // Light blue background
+  text-align: center;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 24px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .cta-actions button {
+    margin: 0 8px;
+  }
+
+  .error {
+    margin-top: 16px;
+    color: red;
+  }
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  .foot-left {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+
+    .app-name {
+      font-weight: 600;
+      color: #3f51b5;
+    }
+  }
+
+  .foot-links a {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0 4px;
+  }
+
+  .version {
+    font-size: 0.8rem;
+    margin-left: 12px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Accessibility & Motion */
+:focus {
+  outline: 3px solid rgba(21, 156, 228, 0.4);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.auth-wrapper {
+  margin-top: 48px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #f7f7f7; 
+  min-height: 400px; 
+  display: block; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+app-login, app-signup {
+  display: block;
+}
+
+.cta-banner {
   
-  .example-sidenav {
-    padding-left: 50px;
-    padding-right: 100px;
-    padding-top: 50px;
-  }
-  .btns{
-    position: fixed;
-    bottom: 10%;
-    right: 5%;
-    z-index: 100;
-  }
+  text-align: center;
+  padding: 0; 
+  background: transparent; 
+  box-shadow: none;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 // import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -13,6 +13,9 @@ import { BusinessDataService } from 'src/app/services/business-data.service';
 export class LoginComponent implements OnInit {
   LoginContinue:boolean=false;
   loginForm!: FormGroup;
+
+  @Output() switchToSignup = new EventEmitter<void>();
+
   constructor(
     public route: Router,
     public authService: AuthService,
@@ -25,6 +28,11 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required),
     });
   }
+
+  onSwitchToSignup(): void {
+    this.switchToSignup.emit();
+  }
+
   onLogin() {
     if (this.loginForm.invalid) {
       return;

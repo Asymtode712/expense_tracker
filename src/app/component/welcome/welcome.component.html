@@ -1,78 +1,126 @@
-<mat-drawer-container
-  class="example-container"
-  hasBackdrop="True"
-  autosize
-  style="height: 100vh"
->
-  <mat-drawer style="height: 100%" #drawer class="example-sidenav" mode="over">
-    <h2
-      style="
-        border-bottom: 2px solid red;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      "
-    >
-      Expense Tracker
-    </h2>
-    <div>
-      <div>
-        <div style="margin-top: 20px" *ngIf="isLogging">
-          <button mat-raised-button color="primary" (click)="onSignUp()">
-            <mat-icon>perm_identity</mat-icon>Sign Up
-          </button>
-        </div>
-        <div style="margin-top: 20px" *ngIf="!isLogging">
-          <button mat-raised-button color="primary" (click)="onLogin()">
-            <mat-icon>login</mat-icon>Login
-          </button>
-        </div>
+<mat-sidenav-container class="welcome-container">
+  <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" fixedTopGap="0" class="mobile-sidenav">
+    <div class="sidenav-content">
+      <button mat-button (click)="onHome()" class="logo-btn">
+        <mat-icon aria-hidden="true" color="primary">track_changes</mat-icon>
+        <span class="app-name">ExpenseTracker</span>
+      </button>
+      <mat-nav-list>
+        <a mat-list-item (click)="onHome(); toggleSidenav()">Home</a>
+        <a mat-list-item (click)="onLearnMore(); toggleSidenav()">Features</a>
+        <a mat-list-item (click)="onLogin(); toggleSidenav()">Login</a>
+      </mat-nav-list>
+      <div class="sidenav-cta">
+        <button mat-raised-button color="primary" (click)="onSignUp(); toggleSidenav()">Get Started</button>
       </div>
     </div>
-    <div *ngIf="appVersion!=''" style="margin-top:20px;font-size:12px;">
-      <p (copy)="false">Application Version: {{appVersion}}</p>
-    </div>
-  </mat-drawer>
-  <div>
-    <mat-toolbar style="border-bottom: 1px solid black">
-      <button
-        mat-icon-button
-        class="example-icon"
-        (click)="drawer.toggle()"
-        aria-label="Example icon-button with menu icon"
-      >
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="desktop-toolbar" role="navigation" aria-label="Main navigation" *ngIf="!(isMobile$ | async)">
+      <button mat-button (click)="onHome()" class="logo-btn" aria-label="Go to home page">
+        <mat-icon aria-hidden="true">track_changes</mat-icon>
+        <span class="app-name">ExpenseTracker</span>
+      </button>
+      <span class="spacer"></span>
+      <div class="nav-links">
+        <button mat-button (click)="onLearnMore()">Features</button>
+        <button mat-button (click)="onLogin()">Login</button>
+        <button mat-raised-button color="accent" (click)="onSignUp()">Sign Up</button>
+      </div>
+    </mat-toolbar>
+
+    <mat-toolbar color="primary" class="mobile-toolbar" role="navigation" aria-label="Mobile navigation" *ngIf="isMobile$ | async">
+      <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Expense Tracker</span>
-      <span class="example-spacer"></span>
-      <button
-        mat-mini-fab
-        class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon"
-        matTooltip="Sign Up"
-        (click)="onSignUp()"
-        *ngIf="isLogging"
-      >
-        <mat-icon>perm_identity</mat-icon>
-      </button>
-      <button
-        mat-raised-button
-        class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon"
-        matTooltip="Login"
-        (click)="onLogin()"
-        *ngIf="!isLogging"
-        color="accent"
-      >
-        <mat-icon>login</mat-icon>
-        Login
+      <span class="spacer"></span>
+      <button mat-button (click)="onHome()" class="logo-btn" aria-label="Go to home page">
+        <mat-icon aria-hidden="true">track_changes</mat-icon>
+        <span class="app-name">ExpenseTracker</span>
       </button>
     </mat-toolbar>
-  </div>
-  <div *ngIf="isLogging">
-    <div>
-      <app-login></app-login>
-    </div>
-  </div>
-  <div *ngIf="!isLogging">
-    <app-signup></app-signup>
-  </div>
-</mat-drawer-container>
+
+    <main class="container">
+      <div class="main-content">
+        
+        <section class="hero" aria-labelledby="hero-heading">
+          <div class="hero-inner">
+            <div class="hero-text" [@heroFade]>
+              <h1 id="hero-heading">Take control of your money — effortlessly</h1>
+              <p class="lead">Track expenses, set budgets, and build better financial habits with simple insights.</p>
+              <div class="hero-ctas">
+                <button mat-raised-button color="primary" (click)="onSignUp()" aria-label="Get started">Get Started</button>
+                <button mat-button (click)="onLearnMore()" aria-label="Learn more about features">Learn More</button>
+              </div>
+              <ul class="hero-quicklist" aria-hidden="false">
+                <li><mat-icon aria-hidden="true">check_circle</mat-icon> Quick expense entry</li>
+                <li><mat-icon aria-hidden="true">bar_chart</mat-icon> Visual spending reports</li>
+                <li><mat-icon aria-hidden="true">shield</mat-icon> Secure & private</li>
+              </ul>
+            </div>
+            <div class="hero-illustration" [@heroSlide]>
+              <img src="assets/image/saving.jpg" alt="Illustration showing charts and wallet" loading="lazy"/>
+            </div>
+          </div>
+        </section>
+
+        <section class="features" aria-labelledby="features-heading">
+          <h2 id="features-heading">Key features</h2>
+          <div class="features-grid">
+            <article class="feature" *ngFor="let f of features" tabindex="0" role="article" [attr.aria-labelledby]="f.id + '-title'">
+              <mat-card class="feature-card" [attr.aria-label]="f.title">
+                <mat-card-header>
+                  <mat-icon aria-hidden="true" class="feature-icon">{{ f.icon }}</mat-icon>
+                  <mat-card-title id="{{f.id}}-title">{{ f.title }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>{{ f.description }}</p>
+                </mat-card-content>
+              </mat-card>
+            </article>
+          </div>
+        </section>
+
+        <section class="testimonials" aria-labelledby="testimonials-heading">
+          <h2 id="testimonials-heading">What users love</h2>
+          <div class="testimonials-grid">
+            <mat-card class="testimonial" *ngFor="let t of testimonials; let i = index" [attr.data-index]="i" tabindex="0">
+              <p class="quote">“{{ t.quote }}”</p>
+              <div class="author">— {{ t.name }}, <span class="role">{{ t.role }}</span></div>
+            </mat-card>
+          </div>
+        </section>
+        <section #authSection id="auth-scroll-target" class="auth-wrapper" tabindex="-1">
+          <div *ngIf="activeAuthView === 'login'">
+            <app-login (switchToSignup)="onSignUp()"></app-login>
+          </div>
+          <div *ngIf="activeAuthView === 'signup'">
+            <app-signup (switchToLogin)="onLogin()"></app-signup>
+          </div>
+          <section *ngIf="activeAuthView === 'none'" class="cta-banner" aria-labelledby="cta-heading">
+            <h2 id="cta-heading">Ready to see where your money goes?</h2>
+            <p>Get started in seconds. No credit card required.</p>
+            <div class="cta-actions">
+              <button mat-flat-button color="accent" (click)="onSignUp()">Create Free Account</button>
+              <button mat-stroked-button (click)="onLogin()">Login</button>
+            </div>
+            <div class="error" role="status" aria-live="polite" *ngIf="errorMessage">{{ errorMessage }}</div>
+          </section>
+
+        </section>
+
+        <footer class="footer" role="contentinfo">
+          <div class="foot-left">© {{ currentYear }} Expense Tracker</div>
+          <div class="foot-links">
+            <a mat-button routerLink="/terms">Terms</a>
+            <a mat-button routerLink="/contact">Contact</a>
+          </div>
+        </footer>
+
+      </div>
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
